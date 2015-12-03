@@ -1,0 +1,17 @@
+<p>This is the players view.</p>
+
+<table class="table table-striped">
+  <thead>
+    <th>Position</th>
+    <th>Name</th>
+    <th>Salary</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="player in players">
+      <td>{{ player.position }}</td>
+      <td>{{ player.name }}</td>
+      <td>{{ player.salary}}</td>
+      <td>
+    </tr>
+  </tbody>
+</table>
