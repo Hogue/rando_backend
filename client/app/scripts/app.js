@@ -10,9 +10,14 @@
  */
 angular
   .module('clientApp', [
-    'ngRoute'
+    'ngRoute',
+    'restangular'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, RestangularProvider) {
+
+    // Set the base URL for Restangular.
+    RestangularProvider.setBaseUrl('http://localhost:3000');
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -29,4 +34,16 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+  })
+  .factory('PlayerRestangular', function(Restangular) {
+    return Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.setRestangularFields({
+        id: '_id'
+      });
+    });
+  })
+  .factory('Player', function(PlayerRestangular) {
+    return PlayerRestangular.service('player');
   });
+
